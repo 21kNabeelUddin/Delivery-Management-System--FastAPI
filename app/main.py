@@ -1,6 +1,11 @@
 from fastapi import FastAPI, status
 from typing import Optional
-from pydantic import BaseModel
+from app.database import engine, Base
+from app import models
+from .schemas import BaseModel
+
+Base.metadata.create_all(engine)
+
 
 app = FastAPI(
     title="Delivery Management System API",

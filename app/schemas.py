@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class DeliveriesBase(BaseModel):  
@@ -11,7 +11,7 @@ class DeliveriesBase(BaseModel):
 
 class Deliveries(DeliveriesBase):
     class Config():
-        orm_mode = True
+        from_attributes = True
 
 
 class User(BaseModel):
@@ -20,21 +20,21 @@ class User(BaseModel):
     password:str
 
 class ShowUser(BaseModel):
-    name:str
-    email:str
-    deliveries: List[deliveries] = []
+    name: str
+    email: str
+    deliveries: List[Deliveries] = Field(default_factory=list)
     class Config():
-        orm_mode = True
+        from_attributes = True
 
 class ShowDeliveries(BaseModel):
-    id : int
+    id: int
     user_id: int
-    item_name : str
+    item_name: str
     destination: str
-    status:str
+    status: str
     tracking_number: int
 
     class Config():
-        orm_mode = True
+        from_attributes = True
 
 
