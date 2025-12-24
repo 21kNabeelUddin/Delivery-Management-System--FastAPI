@@ -2,7 +2,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from app.database import Base
 from sqlalchemy.orm import relationship
 
-class delivery(Base):
+class Delivery(Base):
     __tablename__ = "deliveries"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -12,7 +12,6 @@ class delivery(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     tracking_number = Column(String)
     
-    user = relationship("User", back_populates="deliveries")
 
 class User(Base):
     __tablename__ = "users"
@@ -22,5 +21,5 @@ class User(Base):
     email = Column(String)
     password = Column(String)
 
-    deliveries = relationship("Delivery", back_populates="owner")
+
 
