@@ -2,11 +2,11 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
-class DeliveriesBase(BaseModel):  
-    id : int
-    item_name : str
+class DeliveriesBase(BaseModel):
+    id: Optional[int] = None
+    item_name: str
     destination: str
-    status:str
+    status: str
     tracking_number: int
 
 class Deliveries(DeliveriesBase):
@@ -38,3 +38,14 @@ class ShowDeliveries(BaseModel):
         from_attributes = True
 
 
+class Login(BaseModel):
+    username: str
+    password:str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: str | None = None

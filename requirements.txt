@@ -10,4 +10,4 @@ pydantic
 email-validator
 requests
 pyjwt
-pwdlib
+pwdlib[argon2]
